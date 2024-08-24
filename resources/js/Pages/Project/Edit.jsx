@@ -116,6 +116,7 @@ export default function Create({ auth, project }) {
                   name="status"
                   id="project_status"
                   className="mt-1 block w-full"
+                  value={data.status}
                   onChange={(e) => setData("status", e.target.value)}
                 >
                   <option value="">Select Status</option>
