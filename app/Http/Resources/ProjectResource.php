@@ -5,9 +5,12 @@ namespace App\Http\Resources;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectResource extends JsonResource
 {
+    public static $wrap = false;
+
     /**
      * Transform the resource into an array.
      *
@@ -22,9 +25,10 @@ class ProjectResource extends JsonResource
             'created_at' => (new Carbon($this->create_at))->format('Y-m-d'),
             'due_date' => (new Carbon($this->create_at))->format('Y-m-d'),
             'status' => $this->status,
-            'image_path' => $this->image_path,
+            'image_path' => $this->image_path && !(str_starts_with($this->image_path, 'http')) ?
+                Storage::url($this->image_path) : $this->image_path,
             'createdBy' => new UserResource($this->createdBy),
-            'updateBy' => new UserResource($this->updateBy),
+            'updatedBy' => new UserResource($this->updatedBy),
         ];
     }
 }
