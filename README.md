@@ -2,7 +2,7 @@
 
 A simple project management application using Laravel 11 and React.
 
-I create this SPA Project to further learn more about React implementation
+I follow this tutorial for a SPA Project to further learn more about React implementation
 
 ## Features
 
